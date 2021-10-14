@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #4e4949;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+.App_Home_Default_with_search_result {
+  position: relative;
+  width: 1500px;
+  height: 1800px;
+  background: #555555;
+}
+
+.RectangleCopy2 {
+  position: absolute;
+  width: 1200px;
+  height: 1717px;
+  left: 58px;
+  top: 54px;
+  background: #232323;
+}
+
