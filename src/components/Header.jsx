@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "./Home.css"
 import myData from "../data.json"
 import Movietile from "./Movietile";
+import AddMovie from "./AddMovie/AddMovie";
+import DeleteMovie from "./DeleteMovie/DeleteMovie"
+import EditMovie from "./EditMovie/EditMovie"
 
 
 class HeaderPage extends Component{
@@ -21,7 +24,10 @@ class HeaderPage extends Component{
                 <div className="rectangle1">
                     <input type="image" className="bitmapimageback" alt="Image"/>
                 </div>    
-                <input type="button" className="addmoviesbtn" value="+ ADD BUTTON"/>
+                
+              <AddMovie/>
+              <EditMovie/>
+              <DeleteMovie/>
                 <div>
                     <h1 className= "labelFindText">FIND YOUR MOVIE </h1>
                     <input type="text" placeholder="What do you want to watch?" className="SearchInput" />
