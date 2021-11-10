@@ -1,5 +1,5 @@
-import React,  { useState } from "react";
-import { Button, Modal} from 'react-bootstrap';
+import React,  { useState, useEffect } from "react";
+import { Button, Modal, ModalTitle} from 'react-bootstrap';
 import "./AddMovie.css"
 import ReactDOM from 'react-dom';
 import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
@@ -9,7 +9,13 @@ function AddMovie(){
     
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true); 
+    const handleShow = () => setShow(true);
+    
+    const initialTitle = 'ADD MOVIE'      
+    const [title, setTitle] = useState(initialTitle);      
+    useEffect(() => {      
+        document.title = `New ${title}`      
+    }); 
 
     var data = [
         {value: 'Crime', label: 'Crime',isSelected: true},
@@ -27,14 +33,16 @@ function AddMovie(){
                             
                         <Modal.Header className="headerbackstyle" closeButton>
 
-                        <Modal.Title >ADD MOVIE</Modal.Title>
+                        <Modal.Title>{initialTitle}</Modal.Title>
                         </Modal.Header>
 
                         <Modal.Body className="addmovieModalbox">
                         <div className="container">
                             <div className="left">
                                 <label className="fontstyles">TITLE</label>
-                                <input type="text" className="backstlyes fontstyles2" placeholder="TITLE" ></input>
+                                <input type="text" className="backstlyes fontstyles2" 
+                                   placeholder="TITLE" value={title} 
+                                   onChange={(e) => setTitle(e.target.value)}/>
                                 
                                 <label className="fontstyles">MOVIE URL</label>
                                 <input type="text" className="backstlyes fontstyles2" placeholder="https://"></input>

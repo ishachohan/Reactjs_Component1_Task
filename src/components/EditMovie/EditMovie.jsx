@@ -1,4 +1,4 @@
-import React,  { useState } from "react";
+import React,  { useState , useEffect} from "react";
 import { Button, Modal} from 'react-bootstrap';
 import "../AddMovie/AddMovie.css"
 import ReactDOM from 'react-dom';
@@ -13,13 +13,6 @@ function AddMovie(){
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true); 
 
-    var data = [
-        {value: 'Crime', label: 'Crime',isSelected: true},
-        {value: 'Documentary', label: 'Documentary'},
-        {value: 'Horror', label: 'Horror'},
-        {value: 'Comedy', label: 'Comedy', isSelected: true}
-    ];
-    
     var MockData={
         Movie : "Moana",
         Date : "14-11-2016",
@@ -29,8 +22,15 @@ function AddMovie(){
         overview: "Moana Waialiki is a sea voyaging enthusiast and the only daughter of a chief in a long line of navigators. When her island's fishermen can't catch any fish and the crops fail, she learns that the demigod Maui caused the blight by stealing the heart of the goddess, Te Fiti. The only way to heal the island is to persuade Maui to return Te Fiti's heart, so Moana sets off on an epic journey across the Pacific. The film is based on stories from Polynesian mythology."
     }
 
-    var date = new Date(MockData.Date);
 
+    var data = [
+        {value: 'Crime', label: 'Crime',isSelected: true},
+        {value: 'Documentary', label: 'Documentary'},
+        {value: 'Horror', label: 'Horror'},
+        {value: 'Comedy', label: 'Comedy', isSelected: true}
+    ];
+    
+   
     return ReactDOM.createPortal (
             <React.Fragment>
                   
@@ -43,14 +43,14 @@ function AddMovie(){
                             
                         <Modal.Header className="headerbackstyle" closeButton>
 
-                        <Modal.Title>EDITMOVIE</Modal.Title>
+                        <Modal.Title>EDIT MOVIE</Modal.Title>
                         </Modal.Header>
 
                         <Modal.Body className="addmovieModalbox">
                         <div className="container">
                             <div className="left">
                                 <label className="fontstyles">TITLE</label>
-                                <input type="text" className="backstlyes" value={MockData.Movie} placeholder="TITLE" ></input>
+                                <input type="text" className="backstlyes" name="txtMovie" value={MockData.Movie} placeholder="TITLE" ></input>
                                 
                                 <label className="fontstyles">MOVIE URL</label>
                                 <input type="text" className="backstlyes" placeholder="https://" value={MockData.Url}></input>
