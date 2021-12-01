@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./Home.css"
 import HeaderPage from "./Header";
 import ErrorBoundary from "../ErrorBoundary";
+import Header1 from "./Header1";
 
 class Homepage extends Component{
 
@@ -9,7 +10,7 @@ class Homepage extends Component{
         return(
             <div className="Header">
                 <ErrorBoundary>
-                    <HeaderPage/>
+                    <Header1/>
                 </ErrorBoundary>
             </div>
         );

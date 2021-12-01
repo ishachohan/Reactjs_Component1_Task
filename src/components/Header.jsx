@@ -5,34 +5,35 @@ import Movietile from "./Movietile";
 import AddMovie from "./AddMovie/AddMovie";
 import DeleteMovie from "./DeleteMovie/DeleteMovie"
 import EditMovie from "./EditMovie/EditMovie"
+import MovieDetails from "./MovieDetails/MovieDetails";
 
 
 class HeaderPage extends Component{
     constructor(props){
         super(props)
-        console.log(props)
         this.state ={
            data : myData
         };
     }
 
+
     render(){
         
         const movieComponents = myData.map(data => <Movietile key ={data.id} datas={data}/>)
+        const movieDetailsComponents = myData.map(data => <MovieDetails key ={data.id} datas={data}/>)
         return(
             <div>
                 <div className="rectangle1">
-                    <input type="image" className="bitmapimageback" alt="Image"/>
-                </div>    
-                
-              <AddMovie/>
-              <EditMovie/>
-              <DeleteMovie/>
-                <div>
-                    <h1 className= "labelFindText">FIND YOUR MOVIE </h1>
-                    <input type="text" placeholder="What do you want to watch?" className="SearchInput" />
-                    <input type="button" className="SearchBtn" value="Search" />
-                </div> 
+                        <input type="image" className="bitmapimageback" alt="Image"/> 
+                        <AddMovie/>
+                        <EditMovie/>
+                        <DeleteMovie/>
+                        <div>
+                            <h1 className= "labelFindText">FIND YOUR MOVIE </h1>
+                            <input type="text" placeholder="What do you want to watch?" className="SearchInput" />
+                            <input type="button" className="SearchBtn" value="Search" />
+                        </div> 
+                    </div>  
                
                 <div className="rectangle9"></div> 
 
@@ -45,7 +46,7 @@ class HeaderPage extends Component{
                 <label className="Sortby">Sort by</label>
                 <label className="Releasedate">RELEASE DATE</label>
                     
-                <div className="row moviediv">
+                <div className="row moviediv" onClick={this.handleClick}>
                     {movieComponents}
                 </div>
 

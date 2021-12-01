@@ -3,22 +3,23 @@ import "./Home.css"
 import PropTypes from 'prop-types';
 
 function Movietile(props) {
+
     return (
-        <div className="movietiles">            
-           <React.Fragment key={props.datas.id}>
+        <div className="movietiles" onClick={props.onMovieSelect(props.movie.id)}>            
+           <React.Fragment key={props.movie.id}>
                 <div className="movietilestyle" >
-                    <img src={props.datas.image} alt="movie info" />
+                    <img src={props.movie.image} alt="movie info" />
                     <div className="row">
-                        <h3 className="col-md-auto">{props.datas.movie}</h3>
+                        <h3 className="col-md-auto">{props.movie.movie}</h3>
                         <div className="col align-">
                             <div className="rectangle8 float-right">
-                                <p>{props.datas.year}</p>
+                                <p>{props.movie.year}</p>
                             </div>
                         </div>
                         
                     </div>
                
-                    <p>{props.datas.type}</p>
+                    <p>{props.movie.type}</p>
                     
                 </div>
             </React.Fragment>
