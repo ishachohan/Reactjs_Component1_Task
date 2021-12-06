@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 function Movietile(props) {
 
     return (
-        <div className="movietiles" onClick={props.onMovieSelect(props.movie.id)}>            
+        <div className="movietiles" onClick={ () => () => {props.onMovieSelect(props.movie.id)}}>            
            <React.Fragment key={props.movie.id}>
                 <div className="movietilestyle" >
                     <img src={props.movie.image} alt="movie info" />
