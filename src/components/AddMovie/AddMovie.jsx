@@ -1,5 +1,5 @@
 import React,  { useState, useEffect } from "react";
-import { Button, Modal, ModalTitle} from 'react-bootstrap';
+import { Button, Modal} from 'react-bootstrap';
 import "./AddMovie.css"
 import ReactDOM from 'react-dom';
 import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';

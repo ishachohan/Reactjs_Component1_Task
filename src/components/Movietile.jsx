@@ -5,21 +5,20 @@ import PropTypes from 'prop-types';
 function Movietile(props) {
 
     return (
-        <div className="movietiles" onClick={ () => () => {props.onMovieSelect(props.movie.id)}}>            
+
+        <div className="movietiles" onClick={ event => props.handleChange(event,props.movie)}>            
            <React.Fragment key={props.movie.id}>
-                <div className="movietilestyle" >
-                    <img src={props.movie.image} alt="movie info" />
+                <div className="row movietilestyle" >
+                    <img src={props.movie.poster_path} alt="movie info" />
                     <div className="row">
-                        <h3 className="col-md-auto">{props.movie.movie}</h3>
+                        <h3 className="col-md-auto">{props.movie.title}</h3>
                         <div className="col align-">
                             <div className="rectangle8 float-right">
-                                <p>{props.movie.year}</p>
+                                <p>{props.movie.release_date}</p>
                             </div>
-                        </div>
-                        
+                        </div>              
                     </div>
-               
-                    <p>{props.movie.type}</p>
+                    <p>{props.movie.genres.join('/')}</p>
                     
                 </div>
             </React.Fragment>
@@ -33,7 +32,8 @@ Movietile.propTypes = {
     datas: PropTypes.shape({
       movie: PropTypes.string,
       id: PropTypes.number,
-      type: PropTypes.string,
-      year: PropTypes.string
+      genres: PropTypes.array,
+      release_date: PropTypes.string
     })
   }
+  

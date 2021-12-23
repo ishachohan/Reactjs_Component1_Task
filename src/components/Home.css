@@ -220,10 +220,6 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
-    /* identical to box height */
-
-    letter-spacing: 0.888889px;
-    text-transform: uppercase;
 
     color: #FFFFFF;
   
@@ -266,6 +262,8 @@
     
     color: #FFFFFF;
 
+    cursor: pointer;
+
 }
 
 .Comedy{
@@ -285,6 +283,7 @@
     text-transform: uppercase;
 
     color: #FFFFFF;
+    cursor: pointer;
 }
 .Horror{
     position: absolute;
@@ -303,6 +302,7 @@
     text-transform: uppercase;
     
     color: #FFFFFF;
+    cursor: pointer;
 }
 .Crime{
     position: absolute;
@@ -321,6 +321,7 @@
     text-transform: uppercase;
 
     color: #FFFFFF;
+    cursor: pointer;
 }
 
 .moviediv{
@@ -328,11 +329,11 @@
     left: 10px;
     top: 600px;
 }
-
 .movietiles{
     display: flex;
     flex-wrap: wrap;
-    margin: 0px -15px;
+    margin: 40px;
+    width : 25%;
 }
 .movietilestyle{
     width : 33.333%;
@@ -345,10 +346,10 @@
 
 .movietiles .movietilestyle img{
     display: block;
-    width: 100%;
+    width: 90%;
 }
 .rectangle8{
-    Width : 55px;
+    Width : 100px;
     Height : 18px;
     opacity: 0.5;
     border: 1px solid #979797;

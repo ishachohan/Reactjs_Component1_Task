@@ -5,8 +5,6 @@ import Movietile from "./Movietile";
 import AddMovie from "./AddMovie/AddMovie";
 import DeleteMovie from "./DeleteMovie/DeleteMovie"
 import EditMovie from "./EditMovie/EditMovie"
-import MovieDetails from "./MovieDetails/MovieDetails";
-
 
 class HeaderPage extends Component{
     constructor(props){
@@ -15,12 +13,10 @@ class HeaderPage extends Component{
            data : myData
         };
     }
-
-
     render(){
         
         const movieComponents = myData.map(data => <Movietile key ={data.id} datas={data}/>)
-        const movieDetailsComponents = myData.map(data => <MovieDetails key ={data.id} datas={data}/>)
+        //const movieDetailsComponents = myData.map(data => <MovieDetails key ={data.id} datas={data}/>)
         return(
             <div>
                 <div className="rectangle1">

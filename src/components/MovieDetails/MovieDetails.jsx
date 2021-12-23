@@ -1,9 +1,7 @@
 import React,  { useState , useContext, useCallback} from "react";
 import "./MovieDetails.css"
 import styled from "styled-components";
-import Movietile from "../Movietile";
 import SearchMovie from "../SearchMovie";
-
 
 
 const CoverImage = styled.img`
@@ -43,15 +41,15 @@ cursor: pointer;
 `;
 
 const MovieText = styled.label`
-width: 300px;
+width: 400px;
 height: 49px;
-left: 494px;
+left: 470px;
 top: 100px;
 
 font-family: Montserrat;
 font-style: normal;
 font-weight: 300;
-font-size: 30px;
+font-size: 28px;
 line-height: 49px;
 
 text-align: center;
@@ -104,7 +102,7 @@ const MovieTypetext = styled.label`
 `;
 
 const MovieYear = styled.label`
-width: 54px;
+width: 100px;
 height: 29px;
 left: 500px;
 top: 233px;
@@ -112,8 +110,8 @@ top: 233px;
 font-family: Montserrat;
 font-style: normal;
 font-weight: 300;
-font-size: 24px;
-line-height: 29px;
+font-size: 15px;
+line-height: 15px;
 
 color: #F65261;
 `;
@@ -125,15 +123,15 @@ height: 29px;
 font-family: Montserrat;
 font-style: normal;
 font-weight: 300;
-font-size: 24px;
-line-height: 29px;
+font-size: 15px;
+line-height: 15px;
 
 color: #F65261;
 `;
 
 function MovieDetails(props){
     const textdetails = {
-        text : "Jules Winnfield (Samuel L. Jackson) and Vincent Vega (John Travolta) are two hit men who are out to retrieve a suitcase stolen from their employer, mob boss Marsellus Wallace (Ving Rhames). Wallace has also asked Vincent to take his wife Mia (Uma Thurman) out a few days later when Wallace himself will be out of town. Butch Coolidge (Bruce Willis) is an aging boxer who is paid by Wallace to lose his fight. The lives of these seemingly unrelated people are woven together comprising of a series of funny, bizarre and uncalled-for incidents.—Soumitra"
+        text : props.movie.overview
     };
     
     const TextdetailsContext = React.createContext(textdetails);
@@ -157,17 +155,17 @@ function MovieDetails(props){
                  <SearchIcon src="/search-2-32.png" alt="search button" onClick={flagHandler} />
                 </div>
                 <div className="row">
-                    <CoverImage  src={"/Pulp Fiction.png"} alt="plup Fiction" />
+                    <CoverImage  src={props.movie.poster_path} alt="poster path" />
                     <div className="col-5">
-                        <MovieText>PULP FICTION</MovieText>
-                        <Ratingstext>8.9</Ratingstext>
+                        <MovieText>{props.movie.title}</MovieText>
+                        <Ratingstext style={{textAlign:"right"}}>{props.movie.vote_average}</Ratingstext>
                         <div className="col-9">
-                            <MovieTypetext>Action & Adventure</MovieTypetext>
+                            <MovieTypetext>{props.movie.genres.join('/')}</MovieTypetext>
                         </div>
                         
                         <div className="col-9">
-                            <MovieYear>1994</MovieYear>
-                            <MovieRunTime>2h 32min</MovieRunTime>
+                            <MovieYear>{props.movie.release_date}</MovieYear>
+                            <MovieRunTime>{props.movie.runtime}</MovieRunTime>
                         </div>
                         <div className="col-9">
                             <DetailText>{textcontext.text}</DetailText>
