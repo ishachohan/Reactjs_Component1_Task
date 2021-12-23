@@ -5,7 +5,6 @@ const slice = createSlice({
     name: "posts",
     initialState: {
         list: [],
-        genrelist:[],
         loading: false,
     },
     reducers: {
@@ -40,9 +39,11 @@ export const loadMovies = () => (dispatch) => {
 
 
 export const searchMovies = (name) => (dispatch) => {
+    var urlstring = "/movies?search=" + name + "&searchBy=title&limit=6";
+    console.log(urlstring)
     return dispatch(
         apiCallBegan({
-            url:"/movies?search={name}&searchBy=title&limit=6",
+            url:urlstring,
             onStart: postsRequested.type,
             onSuccess: postsReceived.type,
             onError: postsRequestFailed.type,
@@ -50,13 +51,27 @@ export const searchMovies = (name) => (dispatch) => {
     );
 };
 
-export const filterbygenres = (genretype)  => {
-    return (
+export const filterbygenres = (genretype, sortby)  => {
+    
+    var urlstring = "/movies?filter=" + genretype + "&limit=6&sortOrder=desc&sortBy=";
+    switch (sortby){
+        case "Release Date":
+            urlstring = urlstring + "releasedate";
+            break;
+        case "Ratings":
+            urlstring = urlstring + "ratings";
+            break;
+        default:
+            urlstring = urlstring + "releasedate";
+    }
+    console.log(urlstring)
+    return (      
         apiCallBegan({           
-            url:"/movies?filter={genretype}",
+            url:urlstring,
             onStart: postsRequested.type,
             onSuccess: postsReceived.type,
             onError: postsRequestFailed.type,
         })
     );
 };
+

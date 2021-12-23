@@ -3,7 +3,7 @@ import "./Home.css"
 import Movietile from "./Movietile";
 import SearchMovie from "./SearchMovie";
 import MovieDetails from "./MovieDetails/MovieDetails";
-import { Dropdown } from "react-bootstrap";
+import { DropdownButton, Dropdown } from "react-bootstrap";
 import { filterbygenres } from "../store/movies";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -13,8 +13,12 @@ const Header1 = (props) => {
     const [flag, setflag] = useState(false);
     var movieList = props.movies;
 
-    var moviesbyGenres = useSelector((state) => state.list);
+    const [value,setValue]=useState('Release Date');
+    const handleSelect=(e)=>{
+        setValue(e)
+      }
 
+    const dispatch = useDispatch();
 
     const handleChange = (event, movie) => {
         
@@ -22,6 +26,7 @@ const Header1 = (props) => {
         newMovies = movie;
 
         SetMovieSelect(newMovies);
+        
       };
 
     const flagHandler = () => {
@@ -29,10 +34,6 @@ const Header1 = (props) => {
         window.scrollTo({ top: 0, behavior: "smooth" });
         };
 
-    const sortMoviesbyGenre = (genretype)=> { 
-            filterbygenres(genretype)
-            movieList = moviesbyGenres.data                    
-    };
         
     return(
         <div>
@@ -41,25 +42,20 @@ const Header1 = (props) => {
            
             <div className="rectangle9"></div> 
 
-            <label className="all">All</label>
-            <a className="Documentary" href="#" onClick={() =>sortMoviesbyGenre("documentary")}>DOCUMENTARY</a>
-            <a className="Comedy" href="#" onClick={() =>sortMoviesbyGenre("comedy")}>COMEDY</a>
-            <a className="Horror" href="#" onClick={() =>sortMoviesbyGenre("horror")}>HORROR</a>
-            <a className="Crime" href="#" onClick={() =>sortMoviesbyGenre("crime")}>CRIME</a>
+            <a className="all" href="#" onClick={() => dispatch(filterbygenres("",value))}>ALL</a>
+            <a className="Documentary" href="#" onClick={() => dispatch(filterbygenres("documentary",value))}>DOCUMENTARY</a>
+            <a className="Comedy" href="#" onClick={() => dispatch(filterbygenres("comedy",value))}>COMEDY</a>
+            <a className="Horror" href="#" onClick={() => dispatch(filterbygenres("horror",value))}>HORROR</a>
+            <a className="Crime" href="#" onClick={() => dispatch(filterbygenres("crime",value))}>CRIME</a>
             <label className="moviesfound">39 movies found</label>  
             <label className="Sortby">Sort by</label>
 
-            <Dropdown className="Releasedate">
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    Release Date
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Release Date</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Ratings</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>
-            
+            <DropdownButton id="Iddropdown" title={value} variant="secondary"
+                            className="Releasedate"  onSelect={handleSelect}>
+                <Dropdown.Item eventKey="Release Date">Release Date</Dropdown.Item>
+                <Dropdown.Item eventKey="Ratings">Ratings</Dropdown.Item>
+            </DropdownButton>
+                      
                 
             <div className="row moviediv" onClick={flagHandler}>
                     {movieList?.length ? (
