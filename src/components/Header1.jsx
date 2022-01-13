@@ -5,7 +5,7 @@ import SearchMovie from "./SearchMovie";
 import MovieDetails from "./MovieDetails/MovieDetails";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import { filterbygenres } from "../store/movies";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const Header1 = (props) => {
 

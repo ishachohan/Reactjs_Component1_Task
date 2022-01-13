@@ -2,6 +2,7 @@ import React,  { useState } from "react";
 import { Button, Modal} from 'react-bootstrap';
 import "./DeleteMovie.css"
 import ReactDOM from 'react-dom';
+import { useFormik } from "formik";
 
 function DeleteMovie(){
     
@@ -9,7 +10,15 @@ function DeleteMovie(){
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true); 
 
-    return ReactDOM.createPortal (
+    const formik = useFormik({
+        initialValues: {id:0 },
+        onSubmit: values => {
+            var data = JSON.stringify(values,null,2);
+            handleClose();
+        }
+      });
+
+    return (
         <React.Fragment>             
                 <input type="button" onClick={handleShow} className="deletemoviesbtn" value="-DELETE MOVIES" />              
                 <Modal show={show} onHide={handleClose}  dialogClassName="modal-content1" >
@@ -25,15 +34,13 @@ function DeleteMovie(){
                     </Modal.Body>
 
                     <Modal.Footer className="headerbackstyle">
-                        <Button   variant="customsubmit" onClick={handleClose}>
+                        <Button   variant="customsubmit" onClick={formik.handleSubmit}>
                         CONFIRM
                         </Button>
                     </Modal.Footer>
 
                 </Modal>
-            </React.Fragment>,
-            document.getElementById('portal')
-
+            </React.Fragment>
     );
 }
 export default DeleteMovie
