@@ -1,4 +1,4 @@
-import React,  { useState, useEffect } from "react";
+import React,  { useState } from "react";
 import { Button, Modal} from 'react-bootstrap';
 import "./AddMovie.css"
 import { useFormik } from "formik";
@@ -19,8 +19,7 @@ function AddMovie(){
         {value: 'Comedy', label: 'Comedy', isSelected: true}
     ];
 
-    const initialTitle = 'ADD MOVIE'      
-    const[title, setTitle] = useState(initialTitle);   
+    const initialTitle = 'ADD MOVIE'     
 
     const validate = values => {
         const errors = {};

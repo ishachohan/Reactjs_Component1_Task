@@ -5,21 +5,74 @@ import EditMovie from "./EditMovie/EditMovie"
 import { useDispatch, useSelector } from "react-redux";
 import {searchMovies} from '../store/movies'
 import Header1 from "./Header1";
+import { useParams, useSearchParams, useNavigate } from "react-router-dom"
+import { filterbygenres, getMoviebyId } from "../store/movies";
+import MovieDetails from "./MovieDetails/MovieDetails";
 
 function SearchMovie(props) 
 {
-
-    const [value,setValue]=useState('');
+    const [searchParams, setSearchParams] = useSearchParams();
+    let navigate = useNavigate ();
+    const params = useParams();
+    const [value,setValue]=useState(params.searchQuery);
+    const [flag, setflag] = useState(false);
+ 
     const dispatch = useDispatch();
     const moviesList = useSelector((state) => state.list);
 
-    const [flag, setflag] = useState(false);
-    const flagHandler = () => {
-        setflag(true);
-        dispatch(searchMovies(value));
-    };
+    const flagHandler = () => {  
+        setflag(true);   
 
-    if(flag)
+        if(value)
+        {
+            dispatch(searchMovies(value));
+            navigate(`${value}`);
+            return;
+        }
+
+        if(searchParams.get("movie"))
+        {
+            dispatch(getMoviebyId(searchParams.get("movie")));
+            console.log(moviesList);
+            return;
+        }
+
+        if(searchParams.get("genre"))
+        {
+            dispatch(filterbygenres(searchParams.get("genre"),"releasedate"))
+            console.log(moviesList)
+        }
+        else if(searchParams.get("sortBy"))
+        {
+            dispatch(filterbygenres("",searchParams.get("sortBy")))
+            console.log(moviesList.data)   
+        }
+
+        else if(params.searchQuery === undefined)
+        {
+            dispatch(searchMovies(" "));
+        }
+        else if(params.searchQuery)
+        {
+            dispatch(searchMovies(params.searchQuery)); 
+        }
+        else{
+            dispatch(searchMovies(params.searchQuery)); 
+        }
+      
+    };
+    
+    if(flag === true && searchParams.get("movie"))
+    {
+        if(moviesList?.length > 0)
+        {
+            return(
+                <MovieDetails movies={moviesList}/>
+            );
+        }
+      
+    }
+    else if(flag === true)
     {
         return(
             <Header1 movies={moviesList.data}/>

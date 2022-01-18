@@ -27,6 +27,7 @@ export default slice.reducer;
 const { postsRequested, postsReceived, postsRequestFailed } = slice.actions;
 
 export const loadMovies = () => (dispatch) => {
+    console.log("Load movie api call")
     return dispatch(
         apiCallBegan({
             url:"/movies?limit=6",
@@ -67,6 +68,19 @@ export const filterbygenres = (genretype, sortby)  => {
     console.log(urlstring)
     return (      
         apiCallBegan({           
+            url:urlstring,
+            onStart: postsRequested.type,
+            onSuccess: postsReceived.type,
+            onError: postsRequestFailed.type,
+        })
+    );
+};
+
+export const getMoviebyId = (id) => (dispatch) => {
+    var urlstring = "/movies/" + id;
+    console.log(urlstring)
+    return dispatch(
+        apiCallBegan({
             url:urlstring,
             onStart: postsRequested.type,
             onSuccess: postsReceived.type,

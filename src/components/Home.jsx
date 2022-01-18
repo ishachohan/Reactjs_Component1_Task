@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {loadMovies} from '../store/movies'
 
 function Homepage () {
-
     const dispatch = useDispatch();
     const moviesList = useSelector((state) => state.list);
 
@@ -22,6 +21,4 @@ function Homepage () {
             </div>
         );
 }
-
-
 export default Homepage

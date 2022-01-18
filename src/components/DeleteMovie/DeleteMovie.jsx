@@ -1,7 +1,6 @@
 import React,  { useState } from "react";
 import { Button, Modal} from 'react-bootstrap';
 import "./DeleteMovie.css"
-import ReactDOM from 'react-dom';
 import { useFormik } from "formik";
 
 function DeleteMovie(){
@@ -15,6 +14,7 @@ function DeleteMovie(){
         onSubmit: values => {
             var data = JSON.stringify(values,null,2);
             handleClose();
+            console.log(data);
         }
       });
 
