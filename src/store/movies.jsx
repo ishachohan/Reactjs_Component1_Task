@@ -13,7 +13,7 @@ const slice = createSlice({
         },
 
         postsReceived: (posts, action) => {
-            posts.list = action.payload;     
+            posts.list= action.payload
             posts.loading = false;
         },
 

@@ -160,7 +160,9 @@ function MovieDetails(props){
                         <MovieText>{props.movie.title}</MovieText>
                         <Ratingstext style={{textAlign:"right"}}>{props.movie.vote_average}</Ratingstext>
                         <div className="col-9">
-                            <MovieTypetext>{props.movie.genres.join('/')}</MovieTypetext>
+                        <MovieTypetext>{props.movie.genres}
+
+                        </MovieTypetext>
                         </div>
                         
                         <div className="col-9">
