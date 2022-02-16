@@ -9,20 +9,19 @@ import { useParams, useSearchParams, useNavigate } from "react-router-dom"
 import { filterbygenres , getMoviebyId } from "../store/movies";
 import MovieDetails from "./MovieDetails/MovieDetails";
 
-function SearchMovie(props) 
+function SearchMovie() 
 {
-    const [searchParams, setSearchParams] = useSearchParams();
     let navigate = useNavigate ();
     const params = useParams();
     const [value,setValue]=useState(params.searchQuery);
     const [flag, setflag] = useState(false);
-    
+ 
     const [data, setData] = useState([]);
     const [conditionCounter, setConditionCounter] = useState(0);
 
     const dispatch = useDispatch();
     const moviesList = useSelector((state) => state.list);
-    
+    const [searchParams] = useSearchParams();
       useEffect(() => {
         if(searchParams.get("movie"))
         {
@@ -94,9 +93,9 @@ function SearchMovie(props)
                     <DeleteMovie/>
                     <div>
                         <h1 className= "labelFindText">FIND YOUR MOVIE </h1>
-                        <input type="text" placeholder="What do you want to watch?" 
+                        <input type="text" placeholder="What do you want to watch?" name="searchtxt" id="searchtxt"
                                className="SearchInput" value = {value} onChange={e => setValue(e.target.value)}  />
-                        <input type="button" className="SearchBtn" value="Search" onClick={flagHandler} />
+                        <input type="button" className="SearchBtn" value="Search" onClick={flagHandler} id="searchbtn" name="searchbtn"/>
                     </div> 
             </div> 
     

@@ -1,8 +1,15 @@
-import { render, screen } from '@testing-library/react';
+import { render, getByTestId, getByPlaceholderText } from '@testing-library/react';
 import App from './App';
+import configureStore from "redux-mock-store";
+import { Provider } from 'react-redux';
+
+const middlewares = []
+const mockStore = configureStore(middlewares);
+const store = mockStore({})
 
 test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  <Provider store={store}>
+      render(<App />);
+  </Provider>
+  expect(() => getByPlaceholderText("What do you want to watch?").Value).not.toBeNull()
 });
